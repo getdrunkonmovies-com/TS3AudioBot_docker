@@ -30,6 +30,16 @@ RUN bash -c 'if [ "xy$TS3_AUDIOBOT_INCLUDE_YOUTUBE_DL" == "xytrue" ] ; then \
         echo "skipping setup for youtube-dl"; \
     fi'
 
+# add user to run under
+RUN useradd -ms /bin/bash -u 9999 ts3bot
+
+# make data directory and chown it to the ts3bot user
+RUN mkdir -p /data
+RUN chown -R ts3bot:nogroup /data
+
+# set user to ts3bot, we dont want to be root from now on
+USER ts3bot
+
 # set the work dir to data, so users can properly mount their config files to this dir with -v /host/path/to/data:/data
 WORKDIR /data
 
