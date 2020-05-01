@@ -28,7 +28,7 @@ docker build -f Dockerfile --build-arg TS3_AUDIOBOT_FLAVOUR=TS3AudioBot_dotnet_c
 
 ## Running the container
 
-Run the initial setup:
+Run the initial setup to generate all the initial configuration files:
 
 ```
 docker run --rm -v $(pwd)/data:/data -it local.docker.image/ts3audiobot:0.11.0
