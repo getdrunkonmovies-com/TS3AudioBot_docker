@@ -2,6 +2,28 @@
 
 Dockerfile for [TS3AudioBot](https://github.com/Splamy/TS3AudioBot). Uses `mcr.microsoft.com/dotnet/core/sdk:3.1-bionic` as a base image
 
+## Running the container
+
+Setup the data directory
+
+```
+mkdir -p $(pwd)/data
+chown -R 9999:9999 $(pwd)/data
+```
+
+Run the initial setup to generate all the initial configuration files:
+
+```
+docker run --rm -v $(pwd)/data:/data -it docker.pkg.github.com/getdrunkonmovies-com/ts3audiobot_docker/ts3audiobot:0.11.0
+```
+
+After the initial configuration setup has finished, stop the server with CTRL-C and 
+configure your bot in the configuration files accordingly. Then run the actual container again as a daemon:
+
+```
+docker run --name ts3audiobot -d -v $(pwd)/data:/data docker.pkg.github.com/getdrunkonmovies-com/ts3audiobot_docker/ts3audiobot:0.11.0
+```
+
 ## Building
 
 To build the docker image with all the defaults, run:
@@ -24,26 +46,4 @@ To build the docker image in a specific flavour (default is `TS3AudioBot_dotnet_
 
 ```
 docker build -f Dockerfile --build-arg TS3_AUDIOBOT_FLAVOUR=TS3AudioBot_dotnet_core_3.1.zip -t local.docker.image/ts3audiobot:0.11.0 .
-```
-
-## Running the container
-
-Setup the data directory
-
-```
-mkdir -p $(pwd)/data
-chown -R 9999:9999 $(pwd)/data
-```
-
-Run the initial setup to generate all the initial configuration files:
-
-```
-docker run --rm -v $(pwd)/data:/data -it local.docker.image/ts3audiobot:0.11.0
-```
-
-After the initial wizard has finished, stop the container by pressing CTRL+C.
-Then run the actual container as a daemon
-
-```
-docker run --name ts3audiobot -d -v $(pwd)/data:/data -it local.docker.image/ts3audiobot:0.11.0
 ```
