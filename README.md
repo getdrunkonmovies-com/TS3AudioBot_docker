@@ -25,3 +25,18 @@ To build the docker image in a specific flavour (default is `TS3AudioBot_dotnet_
 ```
 docker build -f Dockerfile --build-arg TS3_AUDIOBOT_FLAVOUR=TS3AudioBot_dotnet_core_3.1.zip -t local.docker.image/ts3audiobot:0.11.0 .
 ```
+
+## Running the container
+
+Run the initial setup:
+
+```
+docker run --rm -v $(pwd)/data:/data -it local.docker.image/ts3audiobot:0.11.0
+```
+
+After the initial wizard has finished, stop the container by pressing CTRL+C.
+Then run the actual container as a daemon
+
+```
+docker run --name ts3audiobot -d -v $(pwd)/data:/data -it local.docker.image/ts3audiobot:0.11.0
+```
