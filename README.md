@@ -28,6 +28,13 @@ docker build -f Dockerfile --build-arg TS3_AUDIOBOT_FLAVOUR=TS3AudioBot_dotnet_c
 
 ## Running the container
 
+Setup the data directory
+
+```
+mkdir -p $(pwd)/data
+chown -R 9999:9999 $(pwd)/data
+```
+
 Run the initial setup to generate all the initial configuration files:
 
 ```
