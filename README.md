@@ -1,6 +1,6 @@
 # TS3AudioBot_docker
 
-Dockerfile for TS3AudioBot. Uses `mcr.microsoft.com/dotnet/core/sdk:3.1-bionic` as a base image
+Dockerfile for [TS3AudioBot](https://github.com/Splamy/TS3AudioBot). Uses `mcr.microsoft.com/dotnet/core/sdk:3.1-bionic` as a base image
 
 ## Building
 
