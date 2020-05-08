@@ -2,6 +2,10 @@
 
 Dockerfile for [TS3AudioBot](https://github.com/Splamy/TS3AudioBot). Uses `mcr.microsoft.com/dotnet/core/sdk:3.1-bionic` as a base image
 
+Docker Hub:
+
+https://hub.docker.com/r/ancieque/ts3audiobot
+
 ## Running the container
 
 Setup the data directory
