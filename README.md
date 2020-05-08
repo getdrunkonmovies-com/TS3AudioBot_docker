@@ -28,6 +28,8 @@ configure your bot in the configuration files accordingly. Then run the actual c
 docker run --name ts3audiobot -d -v $(pwd)/data:/data ancieque/ts3audiobot:0.11.0
 ```
 
+Note: The youtube-dl location inside the image is `/usr/local/bin/youtube-dl`
+
 ## Building
 
 To build the docker image with all the defaults, run:
