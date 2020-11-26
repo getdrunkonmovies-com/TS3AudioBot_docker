@@ -22,25 +22,25 @@ RUN set -x \
 		ffmpeg \
 		unzip \
 		curl \
-		python-pip
-	&& pip install youtube-dl
+		python-pip \
+	&& pip install youtube-dl \
 # Add user
 	&& useradd -ms /bin/bash -u "${PUID}" -m "${USER}" \
 # download and install the TS3AudioBot in the specified version and flavour
 	&& mkdir -p "${BOTDIR}" \
-    && curl -L "${TS3_DLURL}/${TS3_AUDIOBOT_RELEASE}/${TS3_AUDIOBOT_FLAVOUR}" -o TS3AudioBot.zip \
-    && unzip TS3AudioBot.zip -d "${BOTDIR}"
+	&& curl -L "${TS3_DLURL}/${TS3_AUDIOBOT_RELEASE}/${TS3_AUDIOBOT_FLAVOUR}" -o TS3AudioBot.zip \
+	&& unzip TS3AudioBot.zip -d "${BOTDIR}" \
 # make data directory and chown it to the ts3bot user
-	&& mkdir -p "${DATADIR}"
-	&& chown -R "${USER}":"${USER}" "${DATADIR}"
+	&& mkdir -p "${DATADIR}" \
+	&& chown -R "${USER}":"${USER}" "${DATADIR}" \
 # tidy up
-	&& rm TS3AudioBot.zip
+	&& rm TS3AudioBot.zip \
 # wipe packages not required for running the bot
 	&& apt-get remove --purge -y \
 		curl \
 		unzip \
 		python-pip \
-		openssl
+		openssl \
 	&& rm -rf /var/lib/apt/lists/*
 
 # set user to ts3bot, we don't want to be root from now on
