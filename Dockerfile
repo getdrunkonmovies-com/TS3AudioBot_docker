@@ -22,20 +22,20 @@ RUN set -x \
 		ffmpeg \
 		unzip \
 		curl \
-		python-pip \
-	&& pip install youtube-dl \
+		python3-pip \
+	&& pip3 install youtube-dl \
 # Add user
 	&& useradd -ms /bin/bash -u "${PUID}" -m "${USER}" \
-# download and install the TS3AudioBot in the specified version and flavour
+# Download and install the TS3AudioBot in the specified version and flavour
 	&& mkdir -p "${BOTDIR}" \
 	&& curl -L "${TS3_DLURL}/${TS3_AUDIOBOT_RELEASE}/${TS3_AUDIOBOT_FLAVOUR}" -o TS3AudioBot.zip \
 	&& unzip TS3AudioBot.zip -d "${BOTDIR}" \
-# make data directory and chown it to the ts3bot user
+# Create data directory and chown it to the ts3bot user
 	&& mkdir -p "${DATADIR}" \
 	&& chown -R "${USER}":"${USER}" "${DATADIR}" \
-# tidy up
+# Tidy up
 	&& rm TS3AudioBot.zip \
-# wipe packages not required for running the bot
+# Wipe packages not required for running the bot
 	&& apt-get remove --purge -y \
 		curl \
 		unzip \
@@ -43,10 +43,10 @@ RUN set -x \
 		openssl \
 	&& rm -rf /var/lib/apt/lists/*
 
-# set user to ts3bot, we don't want to be root from now on
+# Set user to ts3bot, we don't want to be root from now on
 USER "${USER}"
 
-# set the work dir to data, so users can properly mount their config files to this dir with -v /host/path/to/data:/data
+# Set the work dir to data, so users can properly mount their config files to this dir with -v /host/path/to/data:/data
 WORKDIR "${DATADIR}"
 
 CMD ["dotnet", "/opt/TS3AudioBot/TS3AudioBot.dll", "--non-interactive"]
