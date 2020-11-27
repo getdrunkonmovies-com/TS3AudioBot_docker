@@ -11,9 +11,8 @@ ENV USER ts3bot
 ENV BOTDIR /opt/TS3AudioBot
 ENV DATADIR /data
 
-# Install all pre-requisites, these will be needed always
 RUN set -x \
-# Install dependencies
+# Install all pre-requisites
 	&& apt-get update \
 	&& apt-get install -y --no-install-recommends --no-install-suggests \
 		openssl \
