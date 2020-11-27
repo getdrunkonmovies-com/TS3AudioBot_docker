@@ -49,4 +49,4 @@ USER "${USER}"
 # Set the work dir to data, so users can properly mount their config files to this dir with -v /host/path/to/data:/data
 WORKDIR "${DATADIR}"
 
-CMD ["dotnet", "/opt/TS3AudioBot/TS3AudioBot.dll", "--non-interactive"]
+CMD ["dotnet", "${BOTDIR}/TS3AudioBot.dll", "--non-interactive"]
