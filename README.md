@@ -1,6 +1,6 @@
 # TS3AudioBot_docker
 
-Dockerfile for [TS3AudioBot](https://github.com/Splamy/TS3AudioBot). Uses `mcr.microsoft.com/dotnet/core/sdk:3.1-bionic` as a base image
+Dockerfile for [TS3AudioBot](https://github.com/Splamy/TS3AudioBot). Uses `mcr.microsoft.com/dotnet/aspnet:3.1` as a base image
 
 Docker Hub:
 
@@ -26,6 +26,11 @@ configure your bot in the configuration files accordingly. Then run the actual c
 
 ```
 docker run --name ts3audiobot -d -v $(pwd)/data:/data ancieque/ts3audiobot:0.11.0
+```
+
+If you want to use the webapi, you can also expose the web server on port 58913:
+```
+docker run --name ts3audiobot -d -v $(pwd)/data:/data -p 58913:58913 ancieque/ts3audiobot:0.11.0
 ```
 
 ## Building

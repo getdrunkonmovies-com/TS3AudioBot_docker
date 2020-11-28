@@ -39,7 +39,6 @@ RUN set -x \
 		curl \
 		unzip \
 		python-pip \
-		openssl \
 	&& rm -rf /var/lib/apt/lists/*
 
 # Set user to ts3bot, we don't want to be root from now on
@@ -48,4 +47,7 @@ USER "${USER}"
 # Set the work dir to data, so users can properly mount their config files to this dir with -v /host/path/to/data:/data
 WORKDIR "${DATADIR}"
 
-CMD ["dotnet", "${BOTDIR}/TS3AudioBot.dll", "--non-interactive"]
+# Port of the webapi
+EXPOSE 58913
+
+CMD ["bash", "-c", "dotnet ${BOTDIR}/TS3AudioBot.dll --non-interactive"]
