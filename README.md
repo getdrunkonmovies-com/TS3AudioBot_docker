@@ -4,7 +4,7 @@ Dockerfile for [TS3AudioBot](https://github.com/Splamy/TS3AudioBot). Uses `mcr.m
 
 Docker Hub:
 
-https://hub.docker.com/r/ancieque/ts3audiobot
+https://hub.docker.com/r/cm2network/ts3audiobot
 
 ## Running the container
 
@@ -18,19 +18,19 @@ chown -R 9999:9999 $(pwd)/data
 Run the initial setup to generate all the initial configuration files:
 
 ```
-docker run --rm -v $(pwd)/data:/data -it ancieque/ts3audiobot:0.11.0
+docker run --rm -v $(pwd)/data:/data -it cm2network/ts3audiobot:0.11.0
 ```
 
 After the initial configuration setup has finished, stop the server with CTRL-C and 
 configure your bot in the configuration files accordingly. Then run the actual container again as a daemon:
 
 ```
-docker run --name ts3audiobot -d -v $(pwd)/data:/data ancieque/ts3audiobot:0.11.0
+docker run --name ts3audiobot -d -v $(pwd)/data:/data cm2network/ts3audiobot:0.11.0
 ```
 
 If you want to use the webapi, you can also expose the web server on port 58913:
 ```
-docker run --name ts3audiobot -d -v $(pwd)/data:/data -p 58913:58913 ancieque/ts3audiobot:0.11.0
+docker run --name ts3audiobot -d -v $(pwd)/data:/data -p 58913:58913 cm2network/ts3audiobot:0.11.0
 ```
 
 ## Building
