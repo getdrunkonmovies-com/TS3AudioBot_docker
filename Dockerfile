@@ -30,4 +30,7 @@ USER ts3bot
 # set the work dir to data, so users can properly mount their config files to this dir with -v /host/path/to/data:/data
 WORKDIR /app/data
 
+# expose the webserver port
+EXPOSE 58913
+
 CMD ["dotnet", "/app/TS3AudioBot.dll", "--non-interactive"]
