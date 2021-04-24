@@ -14,7 +14,8 @@ ARG TS3_AUDIOBOT_FLAVOUR="TS3AudioBot_dotnetcore3.1.zip"
 RUN mkdir -p /app \
     && cd /app \
     && wget https://github.com/Splamy/TS3AudioBot/releases/download/${TS3_AUDIOBOT_RELEASE}/${TS3_AUDIOBOT_FLAVOUR} -O TS3AudioBot.zip \
-    && unzip TS3AudioBot.zip
+    && unzip TS3AudioBot.zip \
+    && rm TS3AudioBot.zip
 
 # add user to run under
 RUN adduser --disabled-password -u 9999 ts3bot
