@@ -6,8 +6,8 @@ RUN apk add \
       ffmpeg
 
 # which version and flavour of the audiobot to use
-ARG TS3_AUDIOBOT_RELEASE="0.11.0"
-ARG TS3_AUDIOBOT_FLAVOUR="TS3AudioBot_dotnet_core_3.1.zip"
+ARG TS3_AUDIOBOT_RELEASE="0.12.0"
+ARG TS3_AUDIOBOT_FLAVOUR="TS3AudioBot_dotnetcore3.1.zip"
 
 # download and install the TS3AudioBot in the specified version and flavour
 RUN mkdir -p /opt/TS3AudioBot \
