@@ -1,34 +1,40 @@
-FROM mcr.microsoft.com/dotnet/core/sdk:3.1-bionic
-
-# install all pre-requisites, these will be needed always
-RUN apt-get update && apt-get install -y \
-      openssl \
-      libopus-dev \
-      opus-tools \
-      ffmpeg \
-      zip
+FROM mcr.microsoft.com/dotnet/core/aspnet:3.1-alpine
 
 # which version and flavour of the audiobot to use
-ARG TS3_AUDIOBOT_RELEASE="0.11.0"
-ARG TS3_AUDIOBOT_FLAVOUR="TS3AudioBot_dotnet_core_3.1.zip"
+ARG TS3_AUDIOBOT_RELEASE="0.12.0"
+ARG TS3_AUDIOBOT_FLAVOUR="TS3AudioBot_dotnetcore3.1.zip"
+
+# user id
+ARG PUID=9999
+ENV USER ts3bot
+
+# install all pre-requisites, these will be needed always
+RUN apk add \
+    opus-dev \
+    youtube-dl \
+    ffmpeg
 
 # download and install the TS3AudioBot in the specified version and flavour
-RUN mkdir -p /opt/TS3AudioBot \
-    && cd /opt/TS3AudioBot \
-    && curl -L https://github.com/Splamy/TS3AudioBot/releases/download/${TS3_AUDIOBOT_RELEASE}/${TS3_AUDIOBOT_FLAVOUR} -o TS3AudioBot.zip \
-    && unzip TS3AudioBot.zip
+RUN mkdir -p /app \
+    && cd /app \
+    && wget https://github.com/Splamy/TS3AudioBot/releases/download/${TS3_AUDIOBOT_RELEASE}/${TS3_AUDIOBOT_FLAVOUR} -O TS3AudioBot.zip \
+    && unzip TS3AudioBot.zip \
+    && rm TS3AudioBot.zip
 
 # add user to run under
-RUN useradd -ms /bin/bash -u 9999 ts3bot
+RUN adduser --disabled-password -u "${PUID}" "${USER}"
 
 # make data directory and chown it to the ts3bot user
-RUN mkdir -p /data
-RUN chown -R ts3bot:nogroup /data
+RUN mkdir -p /app/data
+RUN chown -R "${USER}" /app/data
 
 # set user to ts3bot, we dont want to be root from now on
-USER ts3bot
+USER "${USER}"
 
 # set the work dir to data, so users can properly mount their config files to this dir with -v /host/path/to/data:/data
-WORKDIR /data
+WORKDIR /app/data
 
-CMD ["dotnet", "/opt/TS3AudioBot/TS3AudioBot.dll", "--non-interactive"]
+# expose the webserver port
+EXPOSE 58913
+
+CMD ["dotnet", "/app/TS3AudioBot.dll", "--non-interactive"]
