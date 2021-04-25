@@ -1,11 +1,5 @@
 FROM mcr.microsoft.com/dotnet/core/aspnet:3.1-alpine
 
-# install all pre-requisites, these will be needed always
-RUN apk add \
-    opus-dev \
-    youtube-dl \
-    ffmpeg
-
 # which version and flavour of the audiobot to use
 ARG TS3_AUDIOBOT_RELEASE="0.12.0"
 ARG TS3_AUDIOBOT_FLAVOUR="TS3AudioBot_dotnetcore3.1.zip"
@@ -13,6 +7,12 @@ ARG TS3_AUDIOBOT_FLAVOUR="TS3AudioBot_dotnetcore3.1.zip"
 # user id
 ARG PUID=9999
 ENV USER ts3bot
+
+# install all pre-requisites, these will be needed always
+RUN apk add \
+    opus-dev \
+    youtube-dl \
+    ffmpeg
 
 # download and install the TS3AudioBot in the specified version and flavour
 RUN mkdir -p /app \
