@@ -2,9 +2,10 @@
 
 Dockerfile for [TS3AudioBot](https://github.com/Splamy/TS3AudioBot).
 Uses `mcr.microsoft.com/dotnet/core/aspnet:3.1-alpine` as a base image.
+
 Youtube-dl is installed per default.
 
-Docker Hub:
+**Docker Hub:**
 
 https://hub.docker.com/r/ancieque/ts3audiobot
 
@@ -54,10 +55,9 @@ To build the docker image in a specific flavour (default is `TS3AudioBot_dotnetc
 docker build -f Dockerfile --build-arg TS3_AUDIOBOT_FLAVOUR=TS3AudioBot_dotnetcore3.1.zip -t local.docker.image/ts3audiobot:0.11.0 .
 ```
 
+### Other service user id
 
-### Specific Flavour
-
-To build the docker image to use another user id:
+To build the docker image to use another user id, run:
 
 ```bash
 docker build -f Dockerfile --build-arg PUID=9987 -t local.docker.image/ts3audiobot:0.11.0 .
