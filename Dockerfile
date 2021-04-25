@@ -1,10 +1,10 @@
-FROM mcr.microsoft.com/dotnet/core/sdk:3.1-alpine
+FROM mcr.microsoft.com/dotnet/core/aspnet:3.1-alpine
 
 # install all pre-requisites, these will be needed always
 RUN apk add \
-      opus-dev \
-      youtube-dl \
-      ffmpeg
+    opus-dev \
+    youtube-dl \
+    ffmpeg
 
 # which version and flavour of the audiobot to use
 ARG TS3_AUDIOBOT_RELEASE="0.12.0"
