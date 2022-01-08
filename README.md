@@ -1,5 +1,7 @@
 # TS3AudioBot_docker
 
+[![ancieque/ts3audiobot](https://img.shields.io/docker/pulls/ancieque/ts3audiobot)](https://hub.docker.com/r/ancieque/ts3audiobot)
+
 Dockerfile for [TS3AudioBot](https://github.com/Splamy/TS3AudioBot).
 Uses `mcr.microsoft.com/dotnet/core/aspnet:3.1-alpine` as a base image.
 
