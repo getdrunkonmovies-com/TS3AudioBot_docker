@@ -23,14 +23,14 @@ chown -R 9999:9999 $(pwd)/data
 Run the initial setup to generate all the initial configuration files:
 
 ```bash
-docker run --rm -v $(pwd)/data:/data -it ancieque/ts3audiobot:0.11.0
+docker run --rm -v $(pwd)/data:/data -it ancieque/ts3audiobot:0.12.0
 ```
 
 After the initial configuration setup has finished, stop the server with CTRL-C and 
 configure your bot in the configuration files accordingly. Then run the actual container again as a daemon:
 
 ```bash
-docker run --name ts3audiobot -d -v $(pwd)/data:/data ancieque/ts3audiobot:0.11.0
+docker run --name ts3audiobot -d -v $(pwd)/data:/data ancieque/ts3audiobot:0.12.0
 ```
 
 ## Building
@@ -46,7 +46,7 @@ docker build -f Dockerfile -t local.docker.image/ts3audiobot:latest .
 To build the docker image with a specific version of TS3AudioBot, run:
 
 ```bash
-docker build -f Dockerfile --build-arg TS3_AUDIOBOT_RELEASE=0.12.0 -t local.docker.image/ts3audiobot:0.11.0 .
+docker build -f Dockerfile --build-arg TS3_AUDIOBOT_RELEASE=0.12.0 -t local.docker.image/ts3audiobot:0.12.0 .
 ```
 
 ### Specific Flavour
@@ -54,7 +54,7 @@ docker build -f Dockerfile --build-arg TS3_AUDIOBOT_RELEASE=0.12.0 -t local.dock
 To build the docker image in a specific flavour (default is `TS3AudioBot_dotnetcore3.1.zip`), run:
 
 ```bash
-docker build -f Dockerfile --build-arg TS3_AUDIOBOT_FLAVOUR=TS3AudioBot_dotnetcore3.1.zip -t local.docker.image/ts3audiobot:0.11.0 .
+docker build -f Dockerfile --build-arg TS3_AUDIOBOT_FLAVOUR=TS3AudioBot_dotnetcore3.1.zip -t local.docker.image/ts3audiobot:0.12.0 .
 ```
 
 ### Other service user id
@@ -62,5 +62,5 @@ docker build -f Dockerfile --build-arg TS3_AUDIOBOT_FLAVOUR=TS3AudioBot_dotnetco
 To build the docker image to use another user id, run:
 
 ```bash
-docker build -f Dockerfile --build-arg PUID=9987 -t local.docker.image/ts3audiobot:0.11.0 .
+docker build -f Dockerfile --build-arg PUID=9987 -t local.docker.image/ts3audiobot:0.12.0 .
 ```
