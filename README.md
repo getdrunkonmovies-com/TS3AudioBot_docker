@@ -23,14 +23,14 @@ chown -R 9999:9999 $(pwd)/data
 Run the initial setup to generate all the initial configuration files:
 
 ```bash
-docker run --rm -v $(pwd)/data:/app/data -it ancieque/ts3audiobot:0.11.0
+docker run --rm --mount type=bind,source="$(pwd)/data",target=/app/data -it ancieque/ts3audiobot:0.11.0
 ```
 
 After the initial configuration setup has finished, stop the server with CTRL-C and 
 configure your bot in the configuration files accordingly. Then run the actual container again as a daemon:
 
 ```bash
-docker run --name ts3audiobot -d -v $(pwd)/data:/app/data ancieque/ts3audiobot:0.11.0
+docker run --name ts3audiobot -d --mount type=bind,source="$(pwd)/data",target=/app/data ancieque/ts3audiobot:0.11.0
 ```
 
 ## Building
