@@ -11,8 +11,12 @@ ENV USER ts3bot
 # install all pre-requisites, these will be needed always
 RUN apk add \
     opus-dev \
-    youtube-dl \
     ffmpeg
+    
+#download yt-dlp
+RUN wget https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp -O /usr/local/yt-dlp
+RUN chmod +x /usr/local/yt-dlp
+
 
 # download and install the TS3AudioBot in the specified version and flavour
 RUN mkdir -p /app \
